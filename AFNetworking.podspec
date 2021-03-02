@@ -8,6 +8,10 @@ Pod::Spec.new do |s|
   s.social_media_url = "https://twitter.com/AFNetworking"
   s.source = { :git => "https://github.com/HerenMA/AFNetworking.git", :tag => s.version }
 
+  s.static_framework = true
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64', 'EXCLUDED_ARCHS[sdk=watchsimulator*]' => 'arm64', 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64', 'EXCLUDED_ARCHS[sdk=watchsimulator*]' => 'arm64', 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
+
   s.ios.deployment_target    = '9.0'
   s.ios.vendored_framework   = 'ios/AFNetworking.framework'
   s.osx.deployment_target    = '10.10'
