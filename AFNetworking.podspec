@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.authors = {"Mattt Thompson"=>"m@mattt.me"}
   s.homepage = "https://github.com/AFNetworking/AFNetworking"
   s.social_media_url = "https://twitter.com/AFNetworking"
-  s.source = HerenMA,https://github.com/HerenMA/AFNetworking.git
+  s.source = { :git => "https://github.com/HerenMA/AFNetworking.git", :tag => s.version }
 
   s.ios.deployment_target    = '9.0'
   s.ios.vendored_framework   = 'ios/AFNetworking.framework'
