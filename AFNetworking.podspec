@@ -14,6 +14,4 @@ Pod::Spec.new do |s|
   s.osx.vendored_framework   = 'osx/AFNetworking.framework'
   s.watchos.deployment_target    = '2.0'
   s.watchos.vendored_framework   = 'watchos/AFNetworking.framework'
-  s.tvos.deployment_target    = '9.0'
-  s.tvos.vendored_framework   = 'tvos/AFNetworking.framework'
 end
