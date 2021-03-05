@@ -32,10 +32,14 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'Serialization' do |ss|
+    ss.dependency 'AFNetworking/Core'
+    
     ss.source_files = 'AFNetworking/AFURL{Request,Response}Serialization.{h,m}'
   end
 
   s.subspec 'Security' do |ss|
+    ss.dependency 'AFNetworking/Core'
+    
     ss.source_files = 'AFNetworking/AFSecurityPolicy.{h,m}'
   end
 
@@ -43,11 +47,13 @@ Pod::Spec.new do |s|
     ss.ios.deployment_target = '9.0'
     ss.osx.deployment_target = '10.10'
     ss.tvos.deployment_target = '9.0'
-
+    ss.dependency 'AFNetworking/Core'
+    
     ss.source_files = 'AFNetworking/AFNetworkReachabilityManager.{h,m}'
   end
 
   s.subspec 'NSURLSession' do |ss|
+    ss.dependency 'AFNetworking/Core'
     ss.dependency 'AFNetworking/Serialization'
     ss.ios.dependency 'AFNetworking/Reachability'
     ss.osx.dependency 'AFNetworking/Reachability'
@@ -60,6 +66,7 @@ Pod::Spec.new do |s|
   s.subspec 'UIKit' do |ss|
     ss.ios.deployment_target = '9.0'
     ss.tvos.deployment_target = '9.0'
+    ss.dependency 'AFNetworking/Core'
     ss.dependency 'AFNetworking/NSURLSession'
 
     ss.source_files = 'UIKit+AFNetworking'
