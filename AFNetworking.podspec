@@ -18,13 +18,19 @@ Pod::Spec.new do |s|
   s.watchos.frameworks = ["WatchKit", "Security", "MobileCoreServices", "CoreGraphics"]
   s.tvos.frameworks = ["UIKit", "SystemConfiguration", "Security", "MobileCoreServices", "CoreGraphics"]
   
-  s.ios.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking' }
+  s.ios.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   s.osx.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking' }
   s.watchos.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking-watchOS' }
-  s.tvos.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.tvos.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking' }
+  # s.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
 
-  s.source_files = 'AFNetworking/AFNetworking.h'
+  s.default_subspec = 'Framework'
 
+  s.subspec 'Core' do |ss|
+    ss.source_files = 'AFNetworking/AFNetworking.h'
+  end
+  
   s.subspec 'Serialization' do |ss|
     ss.source_files = 'AFNetworking/AFURL{Request,Response}Serialization.{h,m}'
   end
@@ -58,4 +64,9 @@ Pod::Spec.new do |s|
 
     ss.source_files = 'UIKit+AFNetworking'
   end
+  
+  s.subspec 'Framework' do |ss|
+    ss.ios.vendored_framework = 'ios/AFNetworking.framework'
+  end
+  
 end
