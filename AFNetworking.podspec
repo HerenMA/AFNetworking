@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.tvos.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking' }
   # s.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
 
-  s.default_subspec = 'Framework'
+  s.default_subspec = 'Core'
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'AFNetworking/AFNetworking.h'
@@ -65,8 +65,8 @@ Pod::Spec.new do |s|
     ss.source_files = 'UIKit+AFNetworking'
   end
   
-  s.subspec 'Framework' do |ss|
-    ss.ios.vendored_framework = 'ios/AFNetworking.framework'
-  end
+  #s.subspec 'Framework' do |ss|
+  #  ss.ios.vendored_framework = 'ios/AFNetworking.framework'
+  #end
   
 end
