@@ -65,8 +65,11 @@ Pod::Spec.new do |s|
     ss.source_files = 'UIKit+AFNetworking'
   end
   
-  #s.subspec 'Framework' do |ss|
-  #  ss.ios.vendored_framework = 'ios/AFNetworking.framework'
-  #end
+  s.subspec 'Framework' do |ss|
+    ss.ios.vendored_framework = 'ios/AFNetworking.framework'
+    ss.osx.vendored_framework = 'osx/AFNetworking.framework'
+    ss.watchos.vendored_framework = 'watchos/AFNetworking.framework'
+    ss.tvos.vendored_framework = 'tvos/AFNetworking.framework'
+  end
   
 end
