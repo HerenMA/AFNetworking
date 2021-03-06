@@ -25,52 +25,51 @@ Pod::Spec.new do |s|
   s.tvos.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.alamofire.AFNetworking', 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
   s.tvos.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=appletvsimulator*]' => 'arm64' }
 
-  #s.default_subspec = 'Core'
-  s.source_files = 'AFNetworking/AFNetworking.h'
+  s.default_subspec = 'Core'
 
-  #s.subspec 'Core' do |ss|
-  #  ss.source_files = 'AFNetworking/AFNetworking.h'
-  #end
-  
-  s.subspec 'Serialization' do |ss|
-    #ss.dependency 'AFNetworking/Core'
+  s.subspec 'Core' do |ss|
+    ss.source_files = 'AFNetworking/AFNetworking.h'
     
-    ss.source_files = 'AFNetworking/AFURL{Request,Response}Serialization.{h,m}'
-  end
-
-  s.subspec 'Security' do |ss|
-    #ss.dependency 'AFNetworking/Core'
+    ss.subspec 'Serialization' do |serialization|
+      serialization.dependency 'AFNetworking/Core'
     
-    ss.source_files = 'AFNetworking/AFSecurityPolicy.{h,m}'
-  end
+      serialization.source_files = 'AFNetworking/AFURL{Request,Response}Serialization.{h,m}'
+    end
 
-  s.subspec 'Reachability' do |ss|
-    ss.ios.deployment_target = '9.0'
-    ss.osx.deployment_target = '10.10'
-    ss.tvos.deployment_target = '9.0'
-    #ss.dependency 'AFNetworking/Core'
+    ss.subspec 'Security' do |security|
+      security.dependency 'AFNetworking/Core'
     
-    ss.source_files = 'AFNetworking/AFNetworkReachabilityManager.{h,m}'
-  end
+      security.source_files = 'AFNetworking/AFSecurityPolicy.{h,m}'
+    end
 
-  s.subspec 'NSURLSession' do |ss|
-    #ss.dependency 'AFNetworking/Core'
-    ss.dependency 'AFNetworking/Serialization'
-    ss.ios.dependency 'AFNetworking/Reachability'
-    ss.osx.dependency 'AFNetworking/Reachability'
-    ss.tvos.dependency 'AFNetworking/Reachability'
-    ss.dependency 'AFNetworking/Security'
+    ss.subspec 'Reachability' do |reachability|
+      reachability.ios.deployment_target = '9.0'
+      reachability.osx.deployment_target = '10.10'
+      reachability.tvos.deployment_target = '9.0'
+      reachability.dependency 'AFNetworking/Core'
+    
+      reachability.source_files = 'AFNetworking/AFNetworkReachabilityManager.{h,m}'
+    end
 
-    ss.source_files = 'AFNetworking/AF{URL,HTTP}SessionManager.{h,m}', 'AFNetworking/AFCompatibilityMacros.h'
-  end
+    ss.subspec 'NSURLSession' do |session|
+      session.dependency 'AFNetworking/Core'
+      session.dependency 'AFNetworking/Serialization'
+      session.ios.dependency 'AFNetworking/Reachability'
+      session.osx.dependency 'AFNetworking/Reachability'
+      session.tvos.dependency 'AFNetworking/Reachability'
+      session.dependency 'AFNetworking/Security'
 
-  s.subspec 'UIKit' do |ss|
-    ss.ios.deployment_target = '9.0'
-    ss.tvos.deployment_target = '9.0'
-    #ss.dependency 'AFNetworking/Core'
-    ss.dependency 'AFNetworking/NSURLSession'
+      session.source_files = 'AFNetworking/AF{URL,HTTP}SessionManager.{h,m}', 'AFNetworking/AFCompatibilityMacros.h'
+    end
 
-    ss.source_files = 'UIKit+AFNetworking'
+    ss.subspec 'UIKit' do |kit|
+      kit.ios.deployment_target = '9.0'
+      kit.tvos.deployment_target = '9.0'
+      kit.dependency 'AFNetworking/Core'
+      kit.dependency 'AFNetworking/NSURLSession'
+
+      kit.source_files = 'UIKit+AFNetworking'
+    end
   end
   
   #s.subspec 'Framework' do |ss|
