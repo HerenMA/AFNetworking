@@ -47,11 +47,11 @@ Pod::Spec.new do |s|
     end
 
     ss.subspec 'NSURLSession' do |sss|
-      sss.dependency 'AFNetworking/Serialization'
-      sss.ios.dependency 'AFNetworking/Reachability'
-      sss.osx.dependency 'AFNetworking/Reachability'
-      sss.tvos.dependency 'AFNetworking/Reachability'
-      sss.dependency 'AFNetworking/Security'
+      sss.dependency 'AFNetworking/Core/Serialization'
+      sss.ios.dependency 'AFNetworking/Core/Reachability'
+      sss.osx.dependency 'AFNetworking/Core/Reachability'
+      sss.tvos.dependency 'AFNetworking/Core/Reachability'
+      sss.dependency 'AFNetworking/Core/Security'
 
       sss.source_files = 'AFNetworking/AF{URL,HTTP}SessionManager.{h,m}', 'AFNetworking/AFCompatibilityMacros.h'
     end
@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
     ss.subspec 'UIKit' do |sss|
       sss.ios.deployment_target = '9.0'
       sss.tvos.deployment_target = '9.0'
-      sss.dependency 'AFNetworking/NSURLSession'
+      sss.dependency 'AFNetworking/Core/NSURLSession'
 
       sss.source_files = 'UIKit+AFNetworking'
     end
